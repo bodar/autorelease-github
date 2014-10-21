@@ -13,7 +13,7 @@ version=v$(property 'release.version')
 summary=$(property 'commit.summary')
 
 create_release() {
-	local json="{ \"tag_name\": \"${version}\", \"name\": \"${version}\", \"body\": \"${summary}\" }"
+	local json="{ \"tag_name\": \"${version}\", \"name\": \"${version}\", \"body\": \"${summary}\", \"prerelease\": \"${prerelease-false}\" }"
 	curl --user ${username}:${password} -H "Content-Type: application/json" -d "${json}" ${api_url}/repos/${owner}/${repo}/releases
 }
 
