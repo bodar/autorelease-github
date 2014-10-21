@@ -20,5 +20,13 @@ And release.properties contains
 release.files=foo-42.jar,bar-42.jar
 ```
 
+Currently you need 3 environment variables available
+
+```
+username=YOUR_USER_NAME
+password=YOUR_PASSWORD
+owner=THE_OWNER_OF_REPO
+```
+
 
 Then just setup your build pipeline to trigger this project
