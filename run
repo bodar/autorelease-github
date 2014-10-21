@@ -1,0 +1,45 @@
+#!/bin/env bash
+set -e
+
+property() {
+	local key=${1}=
+	grep "$key" artifacts/release.properties | cut -d'=' -f2
+}
+
+api_url=https://api.github.com
+upload_url=https://uploads.github.com
+repo=$(property 'project.name')
+version=v$(property 'release.version')
+summary=$(property 'commit.summary')
+
+create_release() {
+	local json="{ \"tag_name\": \"${version}\", \"name\": \"${version}\", \"body\": \"${summary}\" }"
+	curl --user ${username}:${password} -H "Content-Type: application/json" -d "${json}" ${api_url}/repos/${owner}/${repo}/releases
+}
+
+
+
+upload_artifact() {
+	local filename=${1}
+	curl --user ${username}:${password} --header "Content-Type:application/octet-stream" --data-binary @artifacts/${filename} ${upload_url}/repos/${owner}/${repo}/releases/${release_id}/assets?name=${filename}
+}
+
+process_files()	{
+       	local IFS=","
+        release_files=(`property release.files`)
+
+        for i in "${release_files[@]}"
+       	do
+		echo Uploading artifact ${i}...
+		upload=$(upload_artifact ${i})
+       	done
+}
+
+echo Creating release ${version} ...
+release=$(create_release)
+release_id=$(echo ${release} | jq .id)
+echo Release id: ${release_id}
+process_files
+
+
+
