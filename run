@@ -9,7 +9,7 @@ property() {
 api_url=https://api.github.com
 upload_url=https://uploads.github.com
 repo=${repo-$(property 'project.name')}
-version=v$(property 'release.version')
+version=$(property 'release.version')
 summary=$(property 'commit.summary')
 
 create_release() {
