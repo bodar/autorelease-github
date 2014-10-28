@@ -26,6 +26,7 @@ Currently you need 3 environment variables available
 username=YOUR_USER_NAME
 password=YOUR_PASSWORD
 owner=THE_OWNER_OF_REPO
+repo=(Optional defaults to project.name in properties)
 ```
 
 
