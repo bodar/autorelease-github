@@ -31,5 +31,14 @@ owner=THE_OWNER_OF_REPO
 repo=(Optional defaults to project.name in properties)
 ```
 
+It's recommended that you use an OAuth Token instead of your username and password. See https://help.github.com/articles/git-automation-with-oauth-tokens/
+
+```
+username=YOUR_OAUTH_TOKEN
+password=x-oauth-basic
+```
+
+
+
 
 Then just setup your build pipeline to trigger this project
