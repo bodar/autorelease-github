@@ -18,6 +18,8 @@ And release.properties contains
 
 ```
 release.files=foo-42.jar,bar-42.jar
+commit.summary=Some description of the release
+project.name=Foo (Optional only needed if you don't set a repo environment variable
 ```
 
 Currently you need 3 environment variables available
