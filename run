@@ -3,7 +3,7 @@ set -e
 
 property() {
 	local key=${1}=
-	grep "$key" artifacts/release.properties | cut -d'=' -f2
+	grep "$key" artifacts/release.properties | cut -d'=' -f2 | sed 's/\\//g'
 }
 
 api_url=https://api.github.com
