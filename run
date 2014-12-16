@@ -37,6 +37,7 @@ process_files()	{
 
 echo Creating release ${version} ...
 release=$(create_release)
+echo ${release}
 release_id=$(echo ${release} | jq .id)
 echo Release id: ${release_id}
 process_files
